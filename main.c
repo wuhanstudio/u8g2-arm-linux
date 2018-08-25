@@ -1,99 +1,12 @@
-#define USE_MY_I2C
-// #define USE_FA_I2C
-
 #include <stdio.h>
-#include <unistd.h>
-#include <time.h>
 #include <u8g2.h>
-#include <stdlib.h>
-#include <sys/ioctl.h>
-#include <fcntl.h>
-#include <libfahw-gpio.h>
+#include "i2c.h"
 
-#ifdef USE_MY_I2C
-	#include <linux/i2c-dev.h>
-#endif
-
-#ifdef USE_FA_I2C
-	#include <libfahw-i2c.h>
-	#include <i2c-dev.h>
-#endif
+// #include "led-test.h"
+// #include "i2c-test.h"
 
 u8g2_t u8g2;
-
-int fd;
-int openI2CDevice()
-{
-	int i2c_fd;
-	char filename[40];
-	sprintf(filename,"/dev/i2c-0");
-	if ((i2c_fd = open(filename,O_RDWR)) < 0) {
-		printf("Failed to open the bus.");
-		/* ERROR HANDLING; you can check errno to see what went wrong */
-		return -1;
-	}
-	return i2c_fd;
-}
-
-#ifdef USE_MY_I2C
-void setI2CSlave(int i2c_fd,int addr)			//Wire.begin();
-{	
-	if (ioctl(i2c_fd, I2C_SLAVE, addr) < 0) {
-    	printf("Failed to acquire bus access and/or talk to slave.\n");
-    	/* ERROR HANDLING; you can check errno to see what went wrong */
-    	// exit(1);
-	}
-}
-#endif
-
-void I2CWriteBytes(int i2c_fd, uint8_t* data, uint8_t length)
-{
-	int i = 0;
-
-	// for(i = 0; i < length; i++)
-	// {
-	// 	printf("%02x ", data[i]);
-	// }
-	// printf("\n");
-	
-	#ifdef USE_FA_I2C
-	for(i = 0; i < length; i++)
-	{	
-		I2CWriteByte(fd, data[i], 2);
-	}
-	#endif
-
-	#ifdef USE_MY_I2C
-	if (write(i2c_fd, data, length) != length) {
-    	/* ERROR HANDLING: i2c transaction failed */
-		printf("Failed to write to the i2c bus.\n");
-	}
-	#endif
-}
-
-void sleep_ms(unsigned long milliseconds)
-{
-	struct timespec ts;
-	ts.tv_sec = milliseconds / 1000;
-	ts.tv_nsec = (milliseconds % 1000) * 1000000;
-	nanosleep(&ts, NULL);
-}
-
-void sleep_us(unsigned long microseconds)
-{
-	struct timespec ts;
-	ts.tv_sec = microseconds / 1000 / 1000;
-	ts.tv_nsec = (microseconds % 1000000) * 1000;
-	nanosleep(&ts, NULL);
-}
-
-void sleep_ns(unsigned long nanoseconds)
-{
-	struct timespec ts;
-	ts.tv_sec = 0;
-	ts.tv_nsec = nanoseconds;
-	nanosleep(&ts, NULL);
-}
+int i2c_device;
 
 uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
@@ -135,81 +48,23 @@ uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
       		}
 			break;
 		case U8X8_MSG_BYTE_INIT:
-			fd = openI2CDevice();
+			i2c_device = openI2CDevice();
 			// printf("I2C File Descriptor: %d\n", fd);
 			break;
 		case U8X8_MSG_BYTE_SET_DC:
 			break;
 		case U8X8_MSG_BYTE_START_TRANSFER:
-			setI2CSlave(fd, u8x8_GetI2CAddress(u8x8)>>1);
+			setI2CSlave(i2c_device, u8x8_GetI2CAddress(u8x8)>>1);
 			buf_idx = 0;
 			// printf("I2C Address: %02x\n", u8x8_GetI2CAddress(u8x8)>>1);
 			break;
 		case U8X8_MSG_BYTE_END_TRANSFER:
-			I2CWriteBytes(fd, buffer, buf_idx);
+			I2CWriteBytes(i2c_device, buffer, buf_idx);
 			break;
 		default:
 			return 0;
 	}
 	return 1;
-}
-
-#define LED_BLINK_TIMES     10
-
-#define I2C_WRITE
-
-void led_test()
-{
-	int ledPin = GPIO_PIN8; 
-	int i = 0;
-	int ret = -1;
-
-	if ((ret = exportGPIOPin(ledPin)) == -1) {   
-		printf("exportGPIOPin(%d) failed\n", ledPin);
-	}
-	if ((ret = setGPIODirection(ledPin, GPIO_OUT)) == -1) {
-		printf("setGPIODirection(%d) failed\n", ledPin);
-	}
-
-	for (i = 0; i < LED_BLINK_TIMES; i++) {
-		if (i % 2) {
-			ret = setGPIOValue(ledPin, GPIO_HIGH);
-		} else {
-			ret = setGPIOValue(ledPin, GPIO_LOW);
-		}
-		if (ret == -1) {
-			printf("setGPIOValue(%d) failed\n", ledPin);
-		}
-		printf("LED blinking times %d\n", i);
-		sleep(1);
-	}
-	unexportGPIOPin(ledPin);	
-}
-
-void i2c_setup()
-{
-	fd = openI2CDevice();
-	setI2CSlave(fd, 0x48);
-}
-
-void i2c_read_test(){
-	printf("%d\n", I2CReadByteFrom(fd, 0x43, 50));
-	sleep(1);
-}
-
-void i2c_write_test(){
-
-	int i = 0;
-	for(i=0;i<256;i+=5)
-	{
-		I2CWriteByteTo(fd, 0xFF, i, 50);
-		sleep_ms(5);
-	}
-	for(i=255;i>0;i-=5)
-	{
-		I2CWriteByteTo(fd, 0xFF, i, 50);
-		sleep_ms(5);
-	}
 }
 
 int main(void)
@@ -222,14 +77,14 @@ int main(void)
 	
 	/* full buffer example, setup procedure ends in _f */
 	u8g2_ClearBuffer(&u8g2);
-	u8g2_SetFont(&u8g2, u8g2_font_ncenB14_tr);
-	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on AVR");
+	u8g2_SetFont(&u8g2, u8g2_font_ncenB10_tr);
+	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on NanoPi");
 	u8g2_SendBuffer(&u8g2);
 
 	printf("Initialized ...\n");
+	
 	// i2c_setup();
 	while(1){
-		// led_test();
 		// i2c_read_test();
 		// i2c_write_test();
 	}

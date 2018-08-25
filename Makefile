@@ -11,6 +11,9 @@ CFLAGS= $(IDIR)
 
 TARGET=i2c-oled
 OBJ+=main.o\
+	i2c.o\
+	i2c-test.o\
+	led-test.o\
 	$(OBJDIR)/u8g2_bitmap.o\
 	$(OBJDIR)/u8g2_box.o\
 	$(OBJDIR)/u8g2_buffer.o\
