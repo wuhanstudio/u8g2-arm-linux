@@ -7,7 +7,7 @@ OBJDIR=obj
 LDIR= -L ./lib
 LIBS= -lfahw -lm
 
-CFLAGS= $(IDIR) -std=c99
+CFLAGS= $(IDIR) 
 
 TARGET=i2c-oled
 OBJ+=main.o\
