@@ -111,7 +111,7 @@ uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int
 		sleep_us(arg_int * 10);
 		break;
 	case U8X8_MSG_DELAY_MILLI:			// delay arg_int * 1 milli second
-		sleep_ms(1);
+		sleep_ms(arg_int);
 		break;
 	case U8X8_MSG_DELAY_I2C:			// arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
 		sleep_ns(5000 / arg_int);
