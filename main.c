@@ -71,7 +71,7 @@ void I2CWriteBytes(int i2c_fd, uint8_t* data, uint8_t length)
 	#endif
 }
 
-void sleep_ms(int milliseconds)
+void sleep_ms(unsigned long milliseconds)
 {
 	struct timespec ts;
 	ts.tv_sec = milliseconds / 1000;
@@ -79,15 +79,15 @@ void sleep_ms(int milliseconds)
 	nanosleep(&ts, NULL);
 }
 
-void sleep_us(int microseconds)
+void sleep_us(unsigned long microseconds)
 {
 	struct timespec ts;
-	ts.tv_sec = 0;
-	ts.tv_nsec = microseconds * 1000;
+	ts.tv_sec = microseconds / 1000 / 1000;
+	ts.tv_nsec = (microseconds % 1000000) * 1000;
 	nanosleep(&ts, NULL);
 }
 
-void sleep_ns(int nanoseconds)
+void sleep_ns(unsigned long nanoseconds)
 {
 	struct timespec ts;
 	ts.tv_sec = 0;
