@@ -2,11 +2,9 @@
 #include <u8g2.h>
 #include "i2c.h"
 
-// #include "led-test.h"
-// #include "i2c-test.h"
-
 u8g2_t u8g2;
 int i2c_device;
+char device[] = "/dev/i2c-1";
 
 uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
@@ -48,7 +46,7 @@ uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
       		}
 			break;
 		case U8X8_MSG_BYTE_INIT:
-			i2c_device = openI2CDevice();
+			i2c_device = openI2CDevice(device);
 			// printf("I2C File Descriptor: %d\n", fd);
 			break;
 		case U8X8_MSG_BYTE_SET_DC:
@@ -81,11 +79,13 @@ int main(void)
 	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on NanoPi");
 	u8g2_SendBuffer(&u8g2);
 
+	u8g2_SetFont(&u8g2, u8g2_font_unifont_t_symbols);
+	u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
+	u8g2_SendBuffer(&u8g2);
+
 	printf("Initialized ...\n");
 	
-	// i2c_setup();
-	while(1){
-		// i2c_read_test();
-		// i2c_write_test();
+	while  (1){
+
 	}
 }

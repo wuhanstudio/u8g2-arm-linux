@@ -1,19 +1,23 @@
 
-CC=arm-linux-gcc 
+# Raspberry Pi 2: arm-none-linux-gnueabihf-gcc
+# NanoPi: arm-none-linux-gnueabi-gcc
 
-IDIR= -I ./include -I ./lib/include
-SRCDIR=src
+PI=pi@10.1.1.208
+CC=arm-none-linux-gnueabihf-gcc
+
+IDIR= -I ./include 
+SRCDIR=u8g2src
 OBJDIR=obj
+OUTDIR=bin
 LDIR= -L ./lib
-LIBS= -lfahw -lm
+LIBS=  -lm
 
 CFLAGS= $(IDIR) 
 
 TARGET=i2c-oled
+
 OBJ+=main.o\
 	i2c.o\
-	i2c-test.o\
-	led-test.o\
 	$(OBJDIR)/u8g2_bitmap.o\
 	$(OBJDIR)/u8g2_box.o\
 	$(OBJDIR)/u8g2_buffer.o\
@@ -107,21 +111,25 @@ all: directories $(TARGET)
 
 directories:
 	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OUTDIR)
 
 $(TARGET):$(OBJ)
 	@echo Generating $(TARGET) ...
-	@$(CC) -o $@ $(OBJ) $(LDIR) $(LIBS)
+	@$(CC) -o $(OUTDIR)/$@ $(OBJ) $(LDIR) $(LIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(LDIR) $(LIBS)
 
 clean:
-	rm -rf $(OBJDIR)
-	rm -f $(TARGET)
+	@echo RM -rf $(OBJDIR)/
+	@rm -rf $(OBJ)
+	@rm -rf $(OBJDIR)
+	
+	@echo RM -rf $(OUTDIR)/
+	@rm -rf $(OUTDIR)
 
 upload:
-	scp $(TARGET) root@10.1.1.208:~/
+	scp $(OUTDIR)/$(TARGET) $(PI):~/
 
 run:
-	ssh root@10.1.1.208
-	
+	ssh $(PI)

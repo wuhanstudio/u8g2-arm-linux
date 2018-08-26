@@ -1,10 +1,10 @@
 #include "i2c.h"
 
-int openI2CDevice()
+int openI2CDevice(char * device)
 {
 	int i2c_fd;
 	char filename[40];
-	sprintf(filename,"/dev/i2c-0");
+	sprintf(filename, device);
 	if ((i2c_fd = open(filename,O_RDWR)) < 0) {
 		printf("Failed to open the bus.");
 		/* ERROR HANDLING; you can check errno to see what went wrong */
