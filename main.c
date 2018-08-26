@@ -75,8 +75,8 @@ int main(void)
 	
 	/* full buffer example, setup procedure ends in _f */
 	u8g2_ClearBuffer(&u8g2);
-	u8g2_SetFont(&u8g2, u8g2_font_ncenB10_tr);
-	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on NanoPi");
+	u8g2_SetFont(&u8g2, u8g2_font_ncenB08_tr);
+	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on Raspi Zero");
 	u8g2_SendBuffer(&u8g2);
 
 	u8g2_SetFont(&u8g2, u8g2_font_unifont_t_symbols);

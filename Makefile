@@ -1,9 +1,16 @@
 
-# Raspberry Pi 2: arm-none-linux-gnueabihf-gcc
-# NanoPi: arm-none-linux-gnueabi-gcc
+# Chosse proper compiler for your PI
+# NanoPi:             arm-none-linux-gnueabi-gcc
+# Raspberry Pi Zero:  arm-none-linux-gnueabi-gcc
 
-PI=pi@10.1.1.208
+# Raspberry Pi 2:     arm-none-linux-gnueabihf-gcc
+# OrangePi Zero:      arm-none-linux-gnueabihf-gcc
+# NanoPi NEO:         arm-none-linux-gnueabihf-gcc
+# NanoPi NEO Plus 2:  arm-none-linux-gnueabihf-gcc
 CC=arm-none-linux-gnueabihf-gcc
+
+# IP Address of your PI
+PI=pi@10.1.1.232
 
 IDIR= -I ./include 
 SRCDIR=u8g2src
