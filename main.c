@@ -31,7 +31,8 @@ uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int
 uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
 	uint8_t i = 0;
-	static uint8_t buffer[32];		/* u8g2/u8x8 will never send more than 32 bytes between START_TRANSFER and END_TRANSFER */
+	/* u8g2/u8x8 will never send more than 32 bytes between START_TRANSFER and END_TRANSFER */
+	static uint8_t buffer[32];		
   	static uint8_t buf_idx;
   	uint8_t *data;
 	switch(msg)

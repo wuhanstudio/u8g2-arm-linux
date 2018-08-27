@@ -11,7 +11,7 @@
 #include <fcntl.h>
 
 int openI2CDevice(char* device);
-void setI2CSlave(int i2c_fd,int addr);			//Wire.begin();
+void setI2CSlave(int i2c_fd,int addr);			
 void I2CWriteBytes(int i2c_fd, uint8_t* data, uint8_t length);
 
 void sleep_ms(unsigned long milliseconds);

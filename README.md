@@ -24,7 +24,8 @@ Raspberry Pi ZERO
 
 ![Raspberry Pi ZERO](img/raspi-zero.jpg)	
 
-Raspberry Pi 2 B+  [https://www.raspberrypi.org/products/raspberry-pi-2-model-b/](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/)  
+Raspberry Pi 2 B+  
+[https://www.raspberrypi.org/products/raspberry-pi-2-model-b/](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/)  
 
 ![Raspberry Pi 2 B+](img/raspi2.jpg)	
 

@@ -13,7 +13,7 @@ int openI2CDevice(char * device)
 	return i2c_fd;
 }
 
-void setI2CSlave(int i2c_fd,int addr)			//Wire.begin();
+void setI2CSlave(int i2c_fd,int addr)			
 {	
 	if (ioctl(i2c_fd, I2C_SLAVE, addr) < 0) {
     	printf("Failed to acquire bus access and/or talk to slave.\n");
