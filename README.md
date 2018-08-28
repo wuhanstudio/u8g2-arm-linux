@@ -34,6 +34,11 @@ Orange Pi ZERO
 
 ![Orange Pi ZERO](img/orangepi-zero.jpg)	
 
+Lichee Pi NANO  
+[http://nano.lichee.pro/](http://nano.lichee.pro/)  
+
+![Lichee Pi NANO](img/licheepi-nano.jpg)	
+
 ## How to compile
 
 First, clone this repo:  
