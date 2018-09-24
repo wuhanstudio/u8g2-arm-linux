@@ -9,11 +9,11 @@ It should work fine on virtually all devices running linux with i2c support, sin
 
 ## Todo
 
-- [●] Hardware I2C
-- [&nbsp;&nbsp;] Hardware SPI
-- [&nbsp;&nbsp;] Software I2C
-- [&nbsp;&nbsp;] Software SPI
-- [&nbsp;&nbsp;] GPIO & Delay
+[●] Hardware I2C  
+[&nbsp;&nbsp;] Hardware SPI  
+[&nbsp;&nbsp;] Software I2C  
+[&nbsp;&nbsp;] Software SPI  
+[&nbsp;&nbsp;] GPIO & Delay  
 
 ## Gallery 
 
