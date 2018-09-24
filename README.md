@@ -7,6 +7,14 @@ U8g2 is a monochrome graphics library for embedded devices, and I ported it onto
 
 It should work fine on virtually all devices running linux with i2c support, since no libraries pertaining to specific platforms has been used, yet you need to choose right compilers for your devices. 
 
+## Todo
+
+- [●] Hardware I2C
+- [&nbsp;&nbsp;] Hardware SPI
+- [&nbsp;&nbsp;] Software I2C
+- [&nbsp;&nbsp;] Software SPI
+- [&nbsp;&nbsp;] GPIO & Delay
+
 ## Gallery 
 
 Nanopi  
