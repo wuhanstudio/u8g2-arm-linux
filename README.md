@@ -1,13 +1,26 @@
 
 # U8g2 for arm-linux
 
-## Intro
+<!-- TOC -->
+
+- [U8g2 for arm-linux](#u8g2-for-arm-linux)
+    - [Introduction](#intro)
+    - [Todo list](#todo)
+    - [Gallery](#gallery)
+    - [How to compile](#how-to-compile)
+    - [How to run](#how-to-run)
+    - [Limitations](#limitations)
+    - [Related Projects](#related-projects)
+
+<!-- /TOC -->
+
+## Introduction
 
 U8g2 is a monochrome graphics library for embedded devices, and I ported it onto arm linux.
 
 It should work fine on virtually all devices running linux with i2c support, since no libraries pertaining to specific platforms has been used, yet you need to choose right compilers for your devices. 
 
-## Todo
+## Todo list
 
 [●] Hardware I2C  
 [&nbsp;&nbsp;] Hardware SPI  
@@ -20,32 +33,37 @@ It should work fine on virtually all devices running linux with i2c support, sin
 Nanopi  
 [http://wiki.friendlyarm.com/wiki/index.php/NanoPi](http://wiki.friendlyarm.com/wiki/index.php/NanoPi)  
 
-![Nanopi](img/nanopi.jpg)	
+<img src="img/nanopi.jpg" alt="Nanopi" width=400>	
 
 Nanopi NEO  
 [http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO](http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO)  
 
-![Naopi NEO](img/nanopi-neo.jpg)	
+<img src="img/nanopi-neo.jpg" alt="Nanopi-Neo" width=400>	
 
 Raspberry Pi ZERO  
 [https://www.raspberrypi.org/products/raspberry-pi-zero/](https://www.raspberrypi.org/products/raspberry-pi-zero/)  
 
-![Raspberry Pi ZERO](img/raspi-zero.jpg)	
+<img src="img/raspi-zero.jpg" alt="Raspi-Zero" width=400>		
 
 Raspberry Pi 2 B+  
 [https://www.raspberrypi.org/products/raspberry-pi-2-model-b/](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/)  
 
-![Raspberry Pi 2 B+](img/raspi2.jpg)	
+<img src="img/raspi2.jpg" alt="Raspi2-B+" width=400>	
 
 Orange Pi ZERO  
 [http://www.orangepi.org/orangepizero/](http://www.orangepi.org/orangepizero/)  
 
-![Orange Pi ZERO](img/orangepi-zero.jpg)	
+<img src="img/orangepi-zero.jpg" alt="orangepi-zero" width=400>	
 
 Lichee Pi NANO  
 [http://nano.lichee.pro/](http://nano.lichee.pro/)  
 
-![Lichee Pi NANO](img/licheepi-nano.jpg)	
+<img src="img/licheepi-nano.jpg" alt="licheepi-nano" width=400>	
+
+C-SKY  
+[https://c-sky.github.io/docs/gx6605s.html](https://c-sky.github.io/docs/gx6605s.html)  
+
+<img src="img/csky-ck610.jpg" alt="csky-ck610" width=400>	
 
 ## How to compile
 
@@ -121,3 +139,10 @@ I'll make an implementation for SPI controller in the future.
 
 - U8g2: https://github.com/olikraus/u8g2
 - U8glib: https://github.com/olikraus/u8glib
+
+
+## Contact
+
+* Author：Wu Han
+* Homepage：http://wuhanstudio.cc
+* Email：wuhanstudio@hust.edu.cn
