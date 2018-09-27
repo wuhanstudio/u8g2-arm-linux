@@ -90,6 +90,7 @@
 
 /* Undefine this to remove u8x8_SetContrast function */
 #define U8X8_WITH_SET_CONTRAST
+#define U8X8_USE_PINS  // wuhanstudio
 
 /* Define this for an additional user pointer inside the u8x8 data struct */
 //#define U8X8_WITH_USER_PTR

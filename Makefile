@@ -7,12 +7,14 @@
 # OrangePi Zero:      arm-none-linux-gnueabihf-gcc
 # NanoPi NEO:         arm-none-linux-gnueabihf-gcc
 # NanoPi NEO Plus 2:  arm-none-linux-gnueabihf-gcc
-CC=arm-none-linux-gnueabihf-gcc
+
+# C-SKY Linux:  csky-linux-gcc
+CC=csky-linux-gcc
 
 # IP Address of your PI
-PI=pi@10.1.1.232
+PI=root@10.1.1.102
 
-IDIR= -I ./include 
+IDIR= -I ./drivers -I ./u8g2src 
 SRCDIR=u8g2src
 OBJDIR=obj
 OUTDIR=bin
@@ -24,7 +26,7 @@ CFLAGS= $(IDIR)
 TARGET=i2c-oled
 
 OBJ+=main.o\
-	i2c.o\
+	drivers/i2c.o\
 	$(OBJDIR)/u8g2_bitmap.o\
 	$(OBJDIR)/u8g2_box.o\
 	$(OBJDIR)/u8g2_buffer.o\
