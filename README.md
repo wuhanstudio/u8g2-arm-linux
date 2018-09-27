@@ -1,6 +1,8 @@
 
 # U8g2 for arm-linux
 
+Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
+
 <!-- TOC -->
 
 - [U8g2 for arm-linux](#u8g2-for-arm-linux)
@@ -11,6 +13,8 @@
     - [How to run](#how-to-run)
     - [Limitations](#limitations)
     - [Related Projects](#related-projects)
+	- [Contact](#contact)
+	- [Wiki](https://github.com/wuhanstudio/u8g2-arm-linux/wiki)
 
 <!-- /TOC -->
 
@@ -24,7 +28,7 @@ It should work fine on virtually all devices running linux with i2c support, sin
 
 [●] Hardware I2C  
 [&nbsp;&nbsp;] Hardware SPI  
-[&nbsp;&nbsp;] Software I2C  
+[●] Software I2C  
 [&nbsp;&nbsp;] Software SPI  
 [&nbsp;&nbsp;] GPIO & Delay  
 
@@ -83,6 +87,7 @@ Change cross-compiler in Makefile according to your board.
 	# OrangePi Zero:      arm-none-linux-gnueabihf-gcc
 	# NanoPi NEO:         arm-none-linux-gnueabihf-gcc
 	# NanoPi NEO Plus 2:  arm-none-linux-gnueabihf-gcc
+	# C-SKY:              csky-linux-gcc	
 	CC = arm-none-linux-gnueabihf-gcc
 
 For cross-compile:
