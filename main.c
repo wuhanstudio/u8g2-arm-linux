@@ -13,15 +13,19 @@ uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int
 	case U8X8_MSG_DELAY_NANO:			// delay arg_int * 1 nano second
 		sleep_ns(arg_int);
 		break;    
+
 	case U8X8_MSG_DELAY_100NANO:		// delay arg_int * 100 nano seconds
 		sleep_ns(arg_int * 100);
 		break;
+
 	case U8X8_MSG_DELAY_10MICRO:		// delay arg_int * 10 micro seconds
 		sleep_us(arg_int * 10);
 		break;
+
 	case U8X8_MSG_DELAY_MILLI:			// delay arg_int * 1 milli second
 		sleep_ms(arg_int);
 		break;
+
 	default:
 		return 0;
   }
@@ -30,11 +34,11 @@ uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int
 
 uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
-	uint8_t i = 0;
 	/* u8g2/u8x8 will never send more than 32 bytes between START_TRANSFER and END_TRANSFER */
 	static uint8_t buffer[32];		
   	static uint8_t buf_idx;
   	uint8_t *data;
+	
 	switch(msg)
 	{
 		case U8X8_MSG_BYTE_SEND:
@@ -46,20 +50,22 @@ uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 				arg_int--;
       		}
 			break;
+
 		case U8X8_MSG_BYTE_INIT:
 			i2c_device = openI2CDevice(device);
 			// printf("I2C File Descriptor: %d\n", fd);
 			break;
-		case U8X8_MSG_BYTE_SET_DC:
-			break;
+
 		case U8X8_MSG_BYTE_START_TRANSFER:
 			setI2CSlave(i2c_device, u8x8_GetI2CAddress(u8x8)>>1);
 			buf_idx = 0;
 			// printf("I2C Address: %02x\n", u8x8_GetI2CAddress(u8x8)>>1);
 			break;
+
 		case U8X8_MSG_BYTE_END_TRANSFER:
 			I2CWriteBytes(i2c_device, buffer, buf_idx);
 			break;
+
 		default:
 			return 0;
 	}
@@ -86,7 +92,5 @@ int main(void)
 
 	printf("Initialized ...\n");
 	
-	while  (1){
-
-	}
+	return 0;
 }
