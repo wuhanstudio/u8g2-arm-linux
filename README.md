@@ -80,20 +80,20 @@ First, clone this repo:
 Change cross-compiler in Makefile according to your board.
 
 	# Chosse proper compiler for your PI
-	# NanoPi:             arm-none-linux-gnueabi-gcc
-	# Raspberry Pi Zero:  arm-none-linux-gnueabi-gcc
+	# NanoPi:             arm-linux-gnueabi-gcc
+	# Raspberry Pi Zero:  arm-linux-gnueabi-gcc
 
-	# Raspberry Pi 2:     arm-none-linux-gnueabihf-gcc
-	# OrangePi Zero:      arm-none-linux-gnueabihf-gcc
-	# NanoPi NEO:         arm-none-linux-gnueabihf-gcc
-	# NanoPi NEO Plus 2:  arm-none-linux-gnueabihf-gcc
+	# Raspberry Pi 2:     arm-linux-gnueabihf-gcc
+	# OrangePi Zero:      arm-linux-gnueabihf-gcc
+	# NanoPi NEO:         arm-linux-gnueabihf-gcc
+	# NanoPi NEO Plus 2:  arm-linux-gnueabihf-gcc
 	# C-SKY:              csky-linux-gcc	
-	CC = arm-none-linux-gnueabihf-gcc
+	CC = arm-linux-gnueabihf-gcc
 
 For cross-compile:
 
-	arm-none-linux-gnueabi-gcc   for armv6  
-	arm-none-linux-gnueabihf-gcc for armv7
+	arm-linux-gnueabi-gcc   for armv6  
+	arm-linux-gnueabihf-gcc for armv7
 
 For native-compile (compile on your board), simply use:
 	
