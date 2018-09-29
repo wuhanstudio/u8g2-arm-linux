@@ -1,7 +1,7 @@
 
 # U8g2 for arm-linux
 
-[![Build Status](https://travis-ci.org/wuhanstudio/u8g2-arm-linux.svg?branch=master)](https://travis-ci.com/wuhanstudio/u8g2-arm-linux)
+[![Build Status](https://travis-ci.com/wuhanstudio/u8g2-arm-linux.svg?branch=master)](https://travis-ci.com/wuhanstudio/u8g2-arm-linux)
 
 Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
 
