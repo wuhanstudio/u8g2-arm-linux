@@ -1,9 +1,8 @@
 PI=root@192.168.100.1
 
-SUBDIRS			= examples
+SUBDIRS			= $(wildcard u8g2*)
 TARGET			= subdirs
 PHONY			+= $(TARGET) $(SUBDIRS) %.clean
-OUTDIR          = bin
 
 all: $(TARGET)
 
@@ -20,4 +19,4 @@ clean distclean: $(patsubst %, %.clean, $(SUBDIRS))
 .PHONY: $(PHONY) install clean distclean
 
 upload:
-	scp $(OUTDIR)/* $(PI):~/
+	scp $(OUTDIR)/$(TARGET) $(PI):~/

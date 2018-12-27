@@ -1,4 +1,4 @@
 .vscode
 obj
+bin
 *.o
-i2c-oled

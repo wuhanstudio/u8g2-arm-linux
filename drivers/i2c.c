@@ -1,6 +1,6 @@
 #include "i2c.h"
 
-int openI2CDevice(const char * device)
+int openI2CDevice(const char* device)
 {
 	int i2c_fd;
 	char filename[40];
