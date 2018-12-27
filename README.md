@@ -24,7 +24,7 @@ Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
 
 U8g2 is a monochrome graphics library for embedded devices, and I ported it onto arm linux.
 
-It should work fine on virtually all devices running linux with i2c support, since no libraries pertaining to specific platforms has been used, yet you need to choose right compilers for your devices. 
+It should work fine on virtually all devices running linux with i2c, spi support, since no libraries pertaining to specific platforms has been used, yet you need to choose right compilers for your devices. 
 
 ## Todo list
 
@@ -38,6 +38,10 @@ It should work fine on virtually all devices running linux with i2c support, sin
 
 Nanopi  
 [http://wiki.friendlyarm.com/wiki/index.php/NanoPi](http://wiki.friendlyarm.com/wiki/index.php/NanoPi)  
+
+<img src="img/nanopi-i2c-spi.jpg" alt="Nanopi" width=400>	
+
+<br />
 
 <img src="img/nanopi.jpg" alt="Nanopi" width=400>	
 
@@ -79,7 +83,7 @@ First, clone this repo:
 
 `$ cd u8g2-arm-linux`
 
-Change cross-compiler in Makefile according to your board.
+Change cross-compiler in Makefile under each example directory according to your board.
 
 	# Chosse proper compiler for your PI
 	# NanoPi:             arm-linux-gnueabi-gcc
@@ -131,16 +135,9 @@ Then upload generated binary file onto your board:
 
 `$ make upload`
 
-For native-compile:
-
-`$ sudo ./i2c-oled`
-
 ## Limitations
 
-As for now, only I2C part has bee ported.
- 
-
-I'll make an implementation for SPI controller in the future.
+- 8080mode not supported yet
 
 ## Related Projects
 
