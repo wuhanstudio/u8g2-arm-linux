@@ -10,7 +10,7 @@
 #include <sys/ioctl.h>
 #include <fcntl.h>
 
-int openI2CDevice(char* device);
+int openI2CDevice(const char* device);
 void setI2CSlave(int i2c_fd,int addr);			
 void I2CWriteBytes(int i2c_fd, uint8_t* data, uint8_t length);
 
