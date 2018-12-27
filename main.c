@@ -6,7 +6,7 @@
 
 #define OLED_SPI_PIN_RES            201
 #define OLED_SPI_PIN_DC             199
-#define OLED_SPI_PIN_CS             365
+// #define OLED_SPI_PIN_CS             365
 
 u8g2_t u8g2;
 
@@ -119,17 +119,11 @@ uint8_t u8x8_byte_arm_linux_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
     return 1;
 }
 
-uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) {
-    
-    uint8_t i;
+uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) 
+{    
     uint8_t *data;
-
-    uint8_t tx[256];
-    uint8_t rx[256];
-
-    static uint8_t buf_idx;
-    static uint8_t internal_spi_mode; 
-    static uint8_t buffer_tx[256];
+    uint8_t tx[2], rx[2];
+    static uint8_t buf_idx, internal_spi_mode; 
 
     switch(msg) 
     {
@@ -140,7 +134,17 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             while( arg_int > 0) 
             {
                 // printf("%.2X ", (uint8_t)*data);
-                buffer_tx[buf_idx++] = (uint8_t)*data;
+                tx[0] = (uint8_t)*data;
+                struct spi_ioc_transfer tr = {
+                    .tx_buf = (unsigned long)tx,
+                    .rx_buf = (unsigned long)rx,
+                    .len = 1,
+                    .delay_usecs = 0,
+                    .speed_hz = 500000,
+                    .bits_per_word = 8,
+                };
+
+                SPITransfer(spi_device, &tr);
                 data++;
                 arg_int--;
             }  
@@ -148,12 +152,12 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             break;
 
         case U8X8_MSG_BYTE_INIT:
-        //u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
-        /* SPI mode has to be mapped to the mode of the current controller, at least Uno, Due, 101 have different SPI_MODEx values */
-        /*   0: clock active high, data out on falling edge, clock default value is zero, takover on rising edge */
-        /*   1: clock active high, data out on rising edge, clock default value is zero, takover on falling edge */
-        /*   2: clock active low, data out on rising edge */
-        /*   3: clock active low, data out on falling edge */
+            //u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
+            /* SPI mode has to be mapped to the mode of the current controller, at least Uno, Due, 101 have different SPI_MODEx values */
+            /*   0: clock active high, data out on falling edge, clock default value is zero, takover on rising edge */
+            /*   1: clock active high, data out on rising edge, clock default value is zero, takover on falling edge */
+            /*   2: clock active low, data out on rising edge */
+            /*   3: clock active low, data out on falling edge */
             internal_spi_mode =  0;
             switch(u8x8->display_info->spi_mode) 
             {
@@ -180,34 +184,10 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             break;
 
         case U8X8_MSG_BYTE_START_TRANSFER:
-            u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_ns, NULL);
             break;
 
         case U8X8_MSG_BYTE_END_TRANSFER:      
-            u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_ns, NULL);
-            memset( tx, 0, ARRAY_SIZE(tx)*sizeof(uint8_t) );
-            memset( rx, 0, ARRAY_SIZE(rx)*sizeof(uint8_t) );
-  
-            // printf("SPI Data Sending %d\n", buf_idx);            
-            for (i = 0; i < buf_idx; ++i)
-            {
-                // printf("%.2X ", buffer_tx[i]);
-                tx[i] = buffer_tx[i];
-            }
-            // printf("\n");
-          
-            struct spi_ioc_transfer tr = {
-                .tx_buf = (unsigned long)tx,
-                .rx_buf = (unsigned long)rx,
-                .len = buf_idx,
-                .delay_usecs = 0,
-                .speed_hz = 500000,
-                .bits_per_word = 8,
-            };
             buf_idx = 0;
-
-            SPITransfer(spi_device, &tr);
-
             break;
         
         default:
@@ -220,10 +200,11 @@ int main(void)
 {
 
     // u8g2_Setup_ssd1306_i2c_128x64_noname_f( &u8g2, U8G2_R0, u8x8_byte_arm_linux_hw_i2c, u8x8_arm_linux_gpio_and_delay);
+    
     u8g2_Setup_ssd1306_128x64_noname_f(&u8g2, U8G2_R0, u8x8_byte_arm_linux_hw_spi, u8x8_arm_linux_gpio_and_delay);
-    // u8x8_SetPin(u8g2_GetU8x8(&u8g2), U8X8_PIN_CS, OLED_SPI_PIN_CS);
     u8x8_SetPin(u8g2_GetU8x8(&u8g2), U8X8_PIN_DC, OLED_SPI_PIN_DC);
     u8x8_SetPin(u8g2_GetU8x8(&u8g2), U8X8_PIN_RESET, OLED_SPI_PIN_RES);
+    // u8x8_SetPin(u8g2_GetU8x8(&u8g2), U8X8_PIN_CS, OLED_SPI_PIN_CS);
     
     u8g2_InitDisplay(&u8g2);
     u8g2_SetPowerSave(&u8g2, 0);

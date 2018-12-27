@@ -29,9 +29,9 @@ It should work fine on virtually all devices running linux with i2c support, sin
 ## Todo list
 
 [●] Hardware I2C  
-[&nbsp;&nbsp;] Hardware SPI  
+[●] Hardware SPI  
 [●] Software I2C  
-[&nbsp;&nbsp;] Software SPI  
+[●] Software SPI  
 [&nbsp;&nbsp;] GPIO & Delay  
 
 ## Gallery 
