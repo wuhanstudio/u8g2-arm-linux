@@ -34,6 +34,7 @@ int main(void)
 
     u8g2_SetFont(&u8g2, u8g2_font_unifont_t_symbols);
     u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
+
     u8g2_SendBuffer(&u8g2);
 
     printf("Initialized ...\n");

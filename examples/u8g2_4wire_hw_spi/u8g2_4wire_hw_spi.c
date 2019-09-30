@@ -21,17 +21,19 @@ int main(void)
     u8g2_InitDisplay(&u8g2);
     u8g2_SetPowerSave(&u8g2, 0);
 
-    // Draw    
+    // Draw
     /* full buffer example, setup procedure ends in _f */
     u8g2_ClearBuffer(&u8g2);
+
     u8g2_SetFont(&u8g2, u8g2_font_ncenB08_tr);
     u8g2_DrawStr(&u8g2, 1, 18, "U8g2 HW SPI");
 
     u8g2_SetFont(&u8g2, u8g2_font_unifont_t_symbols);
     u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
+
     u8g2_SendBuffer(&u8g2);
 
     printf("Initialized ...\n");
-    
+
     return 0;
 }

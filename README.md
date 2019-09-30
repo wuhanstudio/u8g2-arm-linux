@@ -32,7 +32,7 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Hardware SPI  
 [●] Software I2C  
 [●] Software SPI  
-[&nbsp;&nbsp;] GPIO & Delay  
+[●] 8080 mode
 
 ## Gallery 
 

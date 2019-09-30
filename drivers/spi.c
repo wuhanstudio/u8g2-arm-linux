@@ -83,4 +83,3 @@ void closeSPIDevice(int fd)
 {
     close(fd);
 }
-
