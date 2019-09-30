@@ -15,7 +15,7 @@ CC=gcc
 # IP Address of your PI
 PI=root@192.168.100.1
 
-TARGET=u8g2_hw_i2c
+TARGET=u8g2_4wire_sw_spi
 IDIR= -I ../../drivers -I ../../u8g2src -I ../../port
 SRCDIR=../../u8g2src
 OBJDIR=../../obj
@@ -25,11 +25,11 @@ LIBS=  -lm
 
 CFLAGS= $(IDIR) 
 
-OBJ+=u8g2_hw_i2c.o\
+OBJ+=u8g2_4wire_sw_spi.o\
 	../../port/U8g2lib.o\
-	../../drivers/i2c.o\
-	../../drivers/spi.o\
 	../../drivers/gpio.o\
+	../../drivers/spi.o\
+	../../drivers/i2c.o\
 	$(OBJDIR)/u8g2_bitmap.o\
 	$(OBJDIR)/u8g2_box.o\
 	$(OBJDIR)/u8g2_buffer.o\
