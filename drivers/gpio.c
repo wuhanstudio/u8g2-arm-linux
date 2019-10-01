@@ -6,7 +6,7 @@ int writeValueToFile(char* fileName, char* buff)
     FILE *fp = fopen(fileName, "w");
     if (fp == NULL) 
     {
-        printf("Failed to write %s to file %s\n", buff, fileName);
+        // printf("Failed to write %s to file %s\n", buff, fileName);
         ret = -1;
     } 
     else 

@@ -7,7 +7,7 @@
 #include "spi.h"
 
 static int i2c_device;
-static const char i2c_bus[] = "/dev/i2c-0";
+static const char i2c_bus[] = "/dev/i2c-1";
 
 static int spi_device;
 static const char spi_bus[] = "/dev/spidev0.0";
