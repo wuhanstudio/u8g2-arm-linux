@@ -32,9 +32,9 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Hardware SPI  
 [●] Software I2C  
 [●] Software SPI  
-[●] 8080 mode
-[  ] Improve software GPIO speed by tracking fd
-[  ] Add C++ wrapper
+[●] 8080 mode  
+[  ] Improve software GPIO speed by tracking fd  
+[  ] Add C++ wrapper  
 
 ## Gallery 
 
