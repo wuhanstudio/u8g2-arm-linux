@@ -58,7 +58,7 @@ int readIntValueFromFile(char* fileName)
 
 int gpioToPin(const char* gpio)
 {
-    int i = 0;
+    unsigned int i = 0;
     char buff[4];
     int index = 0;
     int gpio_index = -1;
