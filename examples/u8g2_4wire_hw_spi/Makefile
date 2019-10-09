@@ -23,7 +23,7 @@ OUTDIR=../../bin
 LDIR= -L ../../lib
 LIBS=  -lm
 
-CFLAGS= $(IDIR) 
+CFLAGS= $(IDIR) -W -Wall
 
 OBJ+=u8g2_4wire_hw_spi.o\
 	../../port/U8g2lib.o\

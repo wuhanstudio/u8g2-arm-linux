@@ -274,7 +274,7 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 {    
     uint8_t *data;
     uint8_t tx[2], rx[2];
-    static uint8_t buf_idx, internal_spi_mode; 
+    uint8_t internal_spi_mode;
 
     switch(msg) 
     {
@@ -312,7 +312,7 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             internal_spi_mode =  0;
             switch(u8x8->display_info->spi_mode) 
             {
-                case 0: internal_spi_mode; break;
+                case 0: break;
                 case 1: internal_spi_mode |= SPI_CPHA; break;
                 case 2: internal_spi_mode |= SPI_CPOL; break;
                 case 3: internal_spi_mode |= SPI_CPOL; internal_spi_mode |= SPI_CPHA; break;
@@ -338,7 +338,6 @@ uint8_t u8x8_byte_arm_linux_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             break;
 
         case U8X8_MSG_BYTE_END_TRANSFER:      
-            buf_idx = 0;
             break;
 
         default:
