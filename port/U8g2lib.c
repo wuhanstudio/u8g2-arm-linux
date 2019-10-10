@@ -8,6 +8,7 @@ static const char spi_bus[] = "/dev/spidev0.0";
 
 uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
+    (void) arg_ptr; /* suppress unused parameter warning */
     switch(msg)
     {
         case U8X8_MSG_DELAY_NANO:            // delay arg_int * 1 nano second
