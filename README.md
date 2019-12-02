@@ -151,4 +151,4 @@ Then upload generated binary file onto your board:
 
 * Author：Wu Han
 * Homepage：http://wuhanstudio.cc
-* Email：wuhanstudio@hust.edu.cn
+* Email：https://github.com/wuhanstudio/u8g2-arm-linux/issues
