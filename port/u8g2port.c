@@ -147,81 +147,81 @@ uint8_t u8x8_arm_linux_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int
         //case U8X8_MSG_GPIO_SPI_DATA:
 
         case U8X8_MSG_GPIO_D2:                  // D2 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D2 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D2] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D2], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D3:                  // D3 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D3 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D3] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D3], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D4:                  // D4 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D4 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D4] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D4], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D5:                  // D5 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D5 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D5] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D5], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D6:                  // D6 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D6 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D6] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D6], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D7:                  // D7 pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_D7 != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_D7] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_D7], arg_int);
             break;
 
         case U8X8_MSG_GPIO_E:                   // E/WR pin: Output level in arg_int
-	    if(u8x8->pins[U8X8_PIN_E != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_E] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_E], arg_int);
             break;
 
         case U8X8_MSG_GPIO_I2C_CLOCK:
             // arg_int=0: Output low at I2C clock pin
             // arg_int=1: Input dir with pullup high for I2C clock pin
-	    if(u8x8->pins[U8X8_PIN_I2C_CLOCK != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_I2C_CLOCK] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_I2C_CLOCK], arg_int);
             break;
 
         case U8X8_MSG_GPIO_I2C_DATA:
             // arg_int=0: Output low at I2C data pin
             // arg_int=1: Input dir with pullup high for I2C data pin
-	    if(u8x8->pins[U8X8_PIN_I2C_DATA != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_I2C_DATA] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_I2C_DATA], arg_int);
             break;
 
         case U8X8_MSG_GPIO_SPI_CLOCK:  
             //Function to define the logic level of the clockline  
-	    if(u8x8->pins[U8X8_PIN_SPI_CLOCK != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_SPI_CLOCK] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_SPI_CLOCK], arg_int);  
             break;
 
         case U8X8_MSG_GPIO_SPI_DATA:
             //Function to define the logic level of the data line to the display  
-	    if(u8x8->pins[U8X8_PIN_SPI_DATA != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_SPI_DATA] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_SPI_DATA], arg_int);  
             break;
 
 	case U8X8_MSG_GPIO_CS:
             // Function to define the logic level of the CS line  
-	    if(u8x8->pins[U8X8_PIN_CS != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_CS] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_CS], arg_int);
             break;
 
         case U8X8_MSG_GPIO_DC:
             //Function to define the logic level of the Data/ Command line  
-	    if(u8x8->pins[U8X8_PIN_DC != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_DC] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_DC], arg_int);
             break;  
 
         case U8X8_MSG_GPIO_RESET:
             //Function to define the logic level of the RESET line
-	    if(u8x8->pins[U8X8_PIN_RESET != U8X8_PIN_NONE])
+	    if(u8x8->pins[U8X8_PIN_RESET] != U8X8_PIN_NONE)
                 setGPIOValue(u8x8->pins[U8X8_PIN_RESET], arg_int);
             break;
 
