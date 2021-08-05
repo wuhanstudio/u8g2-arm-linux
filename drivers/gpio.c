@@ -1,31 +1,20 @@
 #include "gpio.h"
 
-int writeValueToFile(char* fileName, char* buff) 
+#define GPIO_FILENAME_DEFINE(pin,field) char fileName[255] = {0}; \
+        sprintf(fileName, "/sys/class/gpio/gpio%d/%s", pin, field);
+
+static int writeValueToFile(char* fileName, char* buff) 
 {
-    int ret;
     FILE *fp = fopen(fileName, "w");
-    if (fp == NULL) 
+    if (fp != NULL) 
     {
-        // printf("Failed to write %s to file %s\n", buff, fileName);
-        ret = -1;
-    } 
-    else 
-    {
-        // printf("Success writing %s to file %s\n", fileName, buff);
-        ret = fwrite(buff, strlen(buff), 1, fp);
-        fclose(fp);
+        fwrite(buff, strlen(buff), 1, fp);
+        return 0;
     }
-    return ret;
+    return -1;
 }
 
-int writeIntValueToFile(char* fileName, int value) 
-{
-    char buff[50];
-    sprintf(buff, "%d", value);
-    return writeValueToFile(fileName, buff);
-}
-
-int readValueFromFile(char* fileName, char* buff, int len) 
+static int readValueFromFile(char* fileName, char* buff, int len) 
 {
     int ret = -1;
     FILE *fp = fopen(fileName,"r");
@@ -44,7 +33,7 @@ int readValueFromFile(char* fileName, char* buff, int len)
     return ret;
 }
 
-int readIntValueFromFile(char* fileName) 
+static int readIntValueFromFile(char* fileName) 
 {
     char buff[255];
     memset(buff, 0, sizeof(buff));
@@ -55,37 +44,13 @@ int readIntValueFromFile(char* fileName)
     return ret;
 }
 
-
-int gpioToPin(const char* gpio)
-{
-    unsigned int i = 0;
-    char buff[4];
-    int index = 0;
-    int gpio_index = -1;
-
-    for(i=0; i < (unsigned)strlen(gpio); i++)
-    {
-        if( gpio[i] >= '0' && gpio[i] <= '9')
-        {
-            buff[index] = gpio[i];
-            index++;
-            if(gpio_index == -1)
-            {
-                gpio_index = (gpio[i-1] - 'A') * 32;
-            }
-        }
-    }
-    gpio_index += atoi(buff);
-
-    return gpio_index;
-}
-
 int exportGPIOPin(int pin) 
 {
-    int ret = writeIntValueToFile("/sys/class/gpio/export", pin);
-    if (ret > 0)
+    FILE* fp = fopen("/sys/class/gpio/export", "w+");
+    if (fp != NULL) 
     {
-        // printf("Exported pin %d\n", pin);
+        fprintf(fp, "%d", pin);
+        fclose(fp);
         return 0;
     }
     else
@@ -97,7 +62,18 @@ int exportGPIOPin(int pin)
 
 int unexportGPIOPin(int pin) 
 {
-    return writeIntValueToFile("/sys/class/gpio/unexport", pin);
+    FILE* fp = fopen("/sys/class/gpio/unexport", "w+");
+    if (fp != NULL) 
+    {
+        fprintf(fp, "%d", pin);
+        fclose(fp);
+        return 0;
+    }
+    else
+    {
+        printf("Failed to unexport pin %d\n", pin);
+        return -1;
+    }
 }
 
 int getGPIOValue(int pin) 
@@ -108,8 +84,28 @@ int getGPIOValue(int pin)
 
 int setGPIOValue(int pin, int value) 
 {
-    GPIO_FILENAME_DEFINE(pin, "value")
-    return writeIntValueToFile(fileName, value);
+    static FILE* fp_gpio[255];
+    if(fp_gpio[pin] != NULL)
+    {
+        fprintf(fp_gpio[pin], "%d", value);
+        fflush(fp_gpio[pin]);
+        return 0;
+    }
+    else
+    {
+        GPIO_FILENAME_DEFINE(pin, "value")
+        fp_gpio[pin] = fopen(fileName, "w+");
+        if (fp_gpio[pin] != NULL) 
+        {
+            fprintf(fp_gpio[pin], "%d", value);
+            fflush(fp_gpio[pin]);
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }
 
 int setGPIODirection(int pin, int direction) 
@@ -137,8 +133,8 @@ int getGPIODirection(int pin)
     char buff[255] = {0};
     int direction;
     int ret;
-    GPIO_FILENAME_DEFINE(pin, "direction")
 
+    GPIO_FILENAME_DEFINE(pin, "direction")
     ret = readValueFromFile(fileName, buff, sizeof(buff)-1);
     if (ret >= 0) 
     {
