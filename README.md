@@ -13,7 +13,6 @@ Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
     - [Gallery](#gallery)
     - [How to compile](#how-to-compile)
     - [How to run](#how-to-run)
-    - [Limitations](#limitations)
     - [Related Projects](#related-projects)
 	- [Contact](#contact)
 	- [Wiki](https://github.com/wuhanstudio/u8g2-arm-linux/wiki)
@@ -34,7 +33,7 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Software SPI  
 [●] 8080 mode  
 [ &nbsp; ] Improve software GPIO speed by tracking fd  
-[ &nbsp; ] Add C++ wrapper  
+[●] Add C++ wrapper  
 
 ## Gallery 
 
@@ -136,10 +135,6 @@ For cross-compile, you can change ip address in Makefile:
 Then upload generated binary file onto your board:
 
 `$ make upload`
-
-## Limitations
-
-- 8080mode not supported yet
 
 ## Related Projects
 

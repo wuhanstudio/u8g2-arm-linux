@@ -1,6 +1,6 @@
-PI=root@192.168.100.1
+PI=pi@raspberrypi.local
 
-SUBDIRS			= $(wildcard u8g2*)
+SUBDIRS			= $(wildcard *examples)
 TARGET			= subdirs
 PHONY			+= $(TARGET) $(SUBDIRS) %.clean
 
