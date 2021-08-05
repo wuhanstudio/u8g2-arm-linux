@@ -1,4 +1,4 @@
-PI=root@192.168.100.1
+PI=pi@raspberrypi.local
 
 SUBDIRS			= examples
 TARGET			= subdirs
