@@ -7,7 +7,7 @@ before_script:
 # travis has changed to 64-bit and we require 32-bit compatibility libraries
   - sudo apt-get update
   # clang
-  - "sudo apt-get -qq install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf || true"
+  - "sudo apt-get -qq install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabi || true"
 
 script:
   - make
