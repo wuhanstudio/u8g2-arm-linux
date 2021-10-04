@@ -33,14 +33,14 @@ It should work fine on virtually all devices running linux with i2c, spi support
 
 ## Todo list
 
-[●] Hardware I2C
-[●] Hardware SPI
-[●] Software I2C
-[●] Software SPI
-[●] 8080 mode
-[●] Add C++ wrapper
-[●] Improve software GPIO speed by tracking fd
-[ &nbsp;] Better build system
+[●] Hardware I2C  
+[●] Hardware SPI  
+[●] Software I2C  
+[●] Software SPI  
+[●] 8080 mode  
+[●] Add C++ wrapper  
+[●] Improve software GPIO speed by tracking fd  
+[ &nbsp;] Better build system  
 [ &nbsp;] Upstream the port
 
 ## Gallery 
