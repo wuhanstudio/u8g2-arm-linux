@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/wuhanstudio/u8g2-arm-linux.svg?branch=master)](https://travis-ci.com/wuhanstudio/u8g2-arm-linux)
 
-> Automatically sync this repo with upstream
+> Automatically sync this repo with upstream to receive the latest features
 
 ```
 cd tools && ./auto_sync.sh
