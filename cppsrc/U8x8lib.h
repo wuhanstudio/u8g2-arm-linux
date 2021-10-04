@@ -391,6 +391,7 @@ class U8X8_NULL : public U8X8 {
   }
 };
 
+
 /* generated code (codebuild), u8g2 project */
 class U8X8_SSD1305_128X32_NONAME_4W_SW_SPI : public U8X8 {
   public: U8X8_SSD1305_128X32_NONAME_4W_SW_SPI(uint8_t clock, uint8_t data, uint8_t cs, uint8_t dc, uint8_t reset = U8X8_PIN_NONE) : U8X8() {
@@ -4904,7 +4905,6 @@ class U8X8_S1D15721_240X64_8080 : public U8X8 {
     u8x8_SetPin_8Bit_8080(getU8x8(), d0, d1, d2, d3, d4, d5, d6, d7, enable, cs, dc, reset);
   }
 };
-
 #endif // U8X8_USE_PINS
 
 #endif /* _U8X8LIB_HH */
