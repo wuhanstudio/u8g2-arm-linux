@@ -25,8 +25,7 @@ OUTDIR=../../../bin
 LDIR= -L ../../../lib
 LIBS=  -lm
 
-CFLAGS= $(IDIR) -W -Wall
-CXXFLAGS= -D __ARM_LINUX__
+CFLAGS= $(IDIR) -W -Wall -D __ARM_LINUX__
 
 OBJ+=u8g2_4wire_sw_spi.cpp.o\
 	../../../port/u8g2port.o\
@@ -54,7 +53,7 @@ u8g2_4wire_sw_spi.cpp.o: u8g2_4wire_sw_spi.cpp
 	$(CXX) -c -o $@ $< $(CFLAGS) $(LDIR) $(LIBS)
 
 $(OBJDIR)/%.cpp.o: $(CXXSRCDIR)/%.cpp
-	$(CXX) -c -o $@ $< $(CFLAGS) $(CXXFLAGS) $(LDIR) $(LIBS)
+	$(CXX) -c -o $@ $< $(CFLAGS) $(LDIR) $(LIBS)
 
 $(OBJDIR)/%.o: $(CSRCDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(LDIR) $(LIBS)
