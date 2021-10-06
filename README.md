@@ -35,7 +35,7 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Add C++ wrapper  
 [●] Improve software GPIO speed by tracking fd  
 [ &nbsp;] Better build system  
-[ &nbsp;] Upstream the port
+[●] Upstream the port
 
 ## Gallery 
 
