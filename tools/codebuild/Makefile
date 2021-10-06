@@ -13,12 +13,12 @@ codebuild: $(SRC)
 	$(CC) -Wall -g $(LDFLAGS) $(SRC) -o codebuild
 
 clean:	
-	-rm ./codebuild codebuild.o
+	-rm -f ./codebuild
 
 build: codebuild
 	./codebuild
 
-install:
+install: build
 	cp u8g2_d_setup.c u8g2_d_memory.c ../../csrc/
 
 	# Remove previous C++ headers
