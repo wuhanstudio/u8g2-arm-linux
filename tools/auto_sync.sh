@@ -24,5 +24,6 @@ sed -i '0,/\/\* generated code (codebuild), u8g2 project \*\// s///' ../../cppsr
 sed -i '0,/\/\* generated code (codebuild), u8g2 project \*\// s///' ../../cppsrc/U8x8lib.h
 sed -i 'N;s/\n\/\* generated code (codebuild), u8g2 project \*\//\/\* generated code (codebuild), u8g2 project \*\//' ../../cppsrc/U8g2lib.h
 sed -i 'N;s/\n\/\* generated code (codebuild), u8g2 project \*\//\/\* generated code (codebuild), u8g2 project \*\//' ../../cppsrc/U8x8lib.h
+
 # Enable #define U8X8_USE_PINS
 sed -i '/^#ifdef ARDUINO/i #define U8X8_USE_PINS\n' ../../csrc/u8x8.h
