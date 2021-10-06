@@ -186,13 +186,15 @@ uint8_t u8x8_pgm_read_esp(const uint8_t * addr);   /* u8x8_8x8.c */
 #  define U8X8_PROGMEM
 #endif
 
-#define U8X8_USE_PINS
-
 #ifdef ARDUINO
 #define U8X8_USE_PINS
 #endif
 
-#ifdef RTT_U8G2
+#ifdef __RTTHREAD__
+#define U8X8_USE_PINS
+#endif
+
+#ifdef __ARM_LINUX__
 #define U8X8_USE_PINS
 #endif
 
