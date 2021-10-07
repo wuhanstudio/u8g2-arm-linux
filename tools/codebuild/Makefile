@@ -10,6 +10,18 @@ SRC = codebuild.c
 OBJ = $(SRC:.c=.o)
 
 codebuild: $(SRC)
+	# Remove previous controller_list
+	sed -i '/\/\* display_controller_list_start \*\//,/\/\* display_controller_list_end \*\//{//!d}'  ./codebuild.c
+
+	# Get the latest controller_list
+	sed -n '/\/\* display_controller_list_start \*\//,/\/\* display_controller_list_end \*\//{p;}'  ../u8g2/tools/codebuild/codebuild.c | sed '1d;$d' > controller_list.txt
+	sed -i '/\/\* display_controller_list_start \*\// r controller_list.txt' ./codebuild.c
+	rm controller_list.txt
+
+	# Remove the extra line /* display_controller_list_end */
+	sed -i '0,/\/\* display_controller_list_end \*\// s///' ./codebuild.c
+	sed -i 'N;s/\n\/\* display_controller_list_end \*\//\/\* display_controller_list_end \*\//' ./codebuild.c
+
 	$(CC) -Wall -g $(LDFLAGS) $(SRC) -o codebuild
 
 clean:	
