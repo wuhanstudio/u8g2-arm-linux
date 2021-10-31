@@ -33,9 +33,10 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Software SPI  
 [●] 8080 mode  
 [●] Add C++ wrapper  
-[●] Improve software GPIO speed by tracking fd  
+[●] Faster GPIO by tracking fd  
 [●] Better build system  
-[●] Upstream the port
+[●] Upstream the port  
+[&nbsp; &nbsp; ] Replace sysfs with gpiod
 
 ## Gallery 
 
