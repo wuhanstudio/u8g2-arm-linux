@@ -11,8 +11,8 @@ Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
 <!-- TOC -->
 
 - [U8g2 for arm-linux](#u8g2-for-arm-linux)
-    - [Introduction](#intro)
-    - [Todo list](#todo)
+    - [Introduction](#introduction)
+    - [Todo list](#todo-list)
     - [Gallery](#gallery)
     - [How to compile](#how-to-compile)
     - [How to run](#how-to-run)
@@ -39,7 +39,7 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Faster GPIO by tracking fd  
 [●] Better build system  
 [●] Upstream the port  
-[&nbsp; &nbsp; ] Replace sysfs with gpiod
+[&nbsp; &nbsp; ] Replace sysfs with gpiod  
 [&nbsp; &nbsp; ] Benchmark
 
 ## Gallery 
