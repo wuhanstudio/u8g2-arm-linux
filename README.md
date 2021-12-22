@@ -46,8 +46,8 @@ It should work fine on virtually all devices running linux with i2c, spi support
 [●] Faster GPIO by tracking fd  
 [●] Better build system  
 [●] Upstream the port  
-[&nbsp; &nbsp; ] Replace sysfs with gpiod  
-[&nbsp; &nbsp; ] Benchmark
+[&nbsp; ] Replace sysfs with gpiod  
+[&nbsp; ] Benchmark
 
 ## Gallery 
 
