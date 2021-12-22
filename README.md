@@ -5,6 +5,13 @@
 
 [![CircleCI](https://circleci.com/gh/wuhanstudio/u8g2-arm-linux.svg?style=svg)](https://circleci.com/gh/wuhanstudio/u8g2-arm-linux)
 
+## Quick Start
+
+```
+$ cd u8g2-arm-linux
+$ make CC=gcc CXX=g++
+$ ls bin/
+```
 
 Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
 
