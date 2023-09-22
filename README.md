@@ -137,7 +137,7 @@ $ make CC=gcc CXX=g++
 
 ## Run Examples
 
-Before running, you can check your I2C graphic devices using i2c-tools: 
+Before running, you can check your I2C devices using i2c-tools: 
 
 ```
 $ sudo apt-get install i2c-tools
