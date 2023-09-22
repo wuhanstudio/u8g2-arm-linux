@@ -20,7 +20,7 @@ $ make CC=gcc CXX=g++
 $ ls bin/
 ```
 
-Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
+Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for the kernel set up.
 
 <!-- TOC -->
 
