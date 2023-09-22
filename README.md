@@ -8,8 +8,15 @@
 ## Quick Start
 
 ```
+$ git clone --recursive https://github.com/wuhanstudio/u8g2-arm-linux.git
 $ cd u8g2-arm-linux
+
+# Build source with GPIO character device
+$ make CPPFLAGS=-DPERIPHERY_GPIO_CDEV_SUPPORT=1 CC=gcc CXX=g++
+
+# Build source with GPIO sysfs (legacy)
 $ make CC=gcc CXX=g++
+
 $ ls bin/
 ```
 
@@ -22,10 +29,7 @@ Check wiki [here](https://github.com/wuhanstudio/u8g2-arm-linux/wiki) for set-up
     - [Todo list](#todo-list)
     - [Gallery](#gallery)
     - [How to compile](#how-to-compile)
-    - [How to run](#how-to-run)
-    - [Related Projects](#related-projects)
-	- [Contact](#contact)
-	- [Wiki](https://github.com/wuhanstudio/u8g2-arm-linux/wiki)
+    - [Run Examples](#run-examples)
 
 <!-- /TOC -->
 
@@ -94,11 +98,12 @@ C-SKY
 
 First, clone this repo:  
 
-`$ git clone https://github.com/wuhanstudio/u8g2-arm-linux.git`
+```
+$ git clone --recursive https://github.com/wuhanstudio/u8g2-arm-linux.git
+$ cd u8g2-arm-linux
+```
 
-`$ cd u8g2-arm-linux`
-
-Change cross-compiler in Makefile under each example directory according to your board.
+Change the cross-compiler according to your board.
 
 	# Chosse proper compiler for your PI
 	# NanoPi:             arm-linux-gnueabi-gcc
@@ -122,24 +127,34 @@ For native-compile (compile on your board), simply use:
 
 Finally, time to compile:
 
-`$ make`
+```
+# Build source with GPIO character device
+$ make CPPFLAGS=-DPERIPHERY_GPIO_CDEV_SUPPORT=1 CC=gcc CXX=g++
 
-## How to run
+# Build source with GPIO sysfs (legacy)
+$ make CC=gcc CXX=g++
+```
+
+## Run Examples
 
 Before running, you can check your I2C graphic devices using i2c-tools: 
 
-`$ sudo apt-get install i2c-tools`  
+```
+$ sudo apt-get install i2c-tools
+```
 
 List your devices:
 
-`$ ls /dev/i2c*`  
-`/dev/i2c-0  /dev/i2c-1`
+```
+$ ls /dev/i2c*
+/dev/i2c-0  /dev/i2c-1
+```
 
-Probe your devices on bus 0:
+Probe your devices on bus 1:
 
-`$ i2cdetect -y -r 0`
-
------
+```
+$ i2cdetect -y -r 1
+```
 
 For cross-compile, you can change ip address in Makefile:
 
@@ -148,7 +163,9 @@ For cross-compile, you can change ip address in Makefile:
 
 Then upload generated binary file onto your board:
 
-`$ make upload`
+```
+$ make upload
+```
 
 ## Related Projects
 
@@ -158,6 +175,6 @@ Then upload generated binary file onto your board:
 
 ## Contact
 
-* Author：Wu Han
+* Author：Han Wu
 * Homepage：http://wuhanstudio.cc
 * Contact：https://github.com/wuhanstudio/u8g2-arm-linux/issues
