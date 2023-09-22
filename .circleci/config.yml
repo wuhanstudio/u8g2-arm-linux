@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run:
           name: "compile"
-          command: "apt-get update && apt-get -qq install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabi build-essential && make"
+          command: "apt-get update && apt-get -qq install gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabi build-essential && make CPPFLAGS=-DPERIPHERY_GPIO_CDEV_SUPPORT=1"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
